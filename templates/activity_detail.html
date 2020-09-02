@@ -1,5 +1,12 @@
 {% extends 'base.html' %}
 
+{% block breadcrumb %}
+<li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:plans-list' %}">All Plans</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:plan-details' activity.section.plan.slug %}">{{ activity.section.plan.title }}</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:section-details' activity.section.plan.slug activity.section.section_number %}">{{ activity.section.title }}</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{ activity.title }}</li>
+{% endblock breadcrumb %}
+
 {% block title %}Activity Detail{% endblock title %}
 
 {% block content %}
