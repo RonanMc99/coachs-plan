@@ -57,4 +57,4 @@ class Example(models.Model):
     image = models.ImageField()
 
     def __str__(self):
-        return f"{self.activity}-{self.pk}"
+        return f"{self.activity.title}-{self.pk}"
