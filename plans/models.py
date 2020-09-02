@@ -22,3 +22,23 @@ class Plan(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Section(models.Model):
+    ''' Plans are divided into sections '''
+    title = models.CharField(max_length=150)
+    plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
+    section_number = models.IntegerField()
+
+    def __str__(self):
+        return self.title
+
+
+class Activity(models.Model):
+    ''' Sections contain user activities / todos '''
+    title = models.CharField(max_length=150)
+    section = models.ForeignKey(Section, on_delete=models.CASCADE)
+    activity_number = models.IntegerField()
+
+    def __str__(self):
+        return self.title
