@@ -39,7 +39,7 @@
             </div>
         </div>
 <!-- Navigation -->
-        <nav class="shop-navigation text-right text-md-center" role="navigation">
+        {% comment %} <nav class="shop-navigation text-right text-md-center" role="navigation">
             <div class="container">
                 <ul class="shop-menu d-none d-md-block" style="padding: 0;">
                     <li><a href="/">Home</a></li>
@@ -50,7 +50,16 @@
                     {% endif %}
                 </ul>
             </div>
+        </nav> {% endcomment %}
+
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {% block breadcrumb %}
+                    
+                {% endblock breadcrumb %}
+            </ol>
         </nav>
+
         <!-- Message area -->
         {% if messages %}
             {% for message in messages %}

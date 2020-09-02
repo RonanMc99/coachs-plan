@@ -1,12 +1,16 @@
 {% extends 'base.html' %}
 
+{% block breadcrumb %}
+<li class="breadcrumb-item active" aria-current="page">All Plans</li>
+{% endblock breadcrumb %}
+
 {% block title %}Plans{% endblock title %}
 
 {% block content %}
 
 <h1>All Available Plans</h1>
     {% for plan in queryset %}
-        <p>{{ plan }}</p>
+        <p><a href="{% url 'plans:plan-details' plan.slug %}">{{ plan }}</a></p>
     {% endfor %}
 
 {% endblock content %}
