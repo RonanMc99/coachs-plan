@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plans</title>
-</head>
-<body>
-    <h1>All Available Plans</h1>
+{% extends 'base.html' %}
+
+{% block title %}Plans{% endblock title %}
+
+{% block content %}
+
+<h1>All Available Plans</h1>
     {% for plan in queryset %}
         <p>{{ plan }}</p>
     {% endfor %}
-</body>
-</html>
+
+{% endblock content %}

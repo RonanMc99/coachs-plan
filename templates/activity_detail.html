@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Activity Detail</title>
-</head>
-<body>
-    <h1>Welcome to Activity:</h1>
-    <p>{{ activity.title }}</p>
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Activity Detail{% endblock title %}
+
+{% block content %}
+
+<h1>Welcome to Activity:</h1>
+<p>{{ activity.title }}</p>
+
+{% endblock content %}
