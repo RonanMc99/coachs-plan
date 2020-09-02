@@ -9,6 +9,9 @@ class Coach(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
 
+    class Meta:
+        verbose_name_plural = 'Coaches'
+
 
 class Plan(models.Model):
     ''' Plans are available for purchase '''
@@ -42,6 +45,9 @@ class Activity(models.Model):
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name_plural = 'Activities'
 
 
 class Example(models.Model):
