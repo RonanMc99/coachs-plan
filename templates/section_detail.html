@@ -1,5 +1,11 @@
 {% extends 'base.html' %}
 
+{% block breadcrumb %}
+<li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:plans-list' %}">All Plans</a></li>
+<li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:plan-details' section.plan.slug %}">{{ section.plan.title }}</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{ section.title }}</li>
+{% endblock breadcrumb %}
+
 {% block title %}Section Detail{% endblock title %}
 
 {% block content %}

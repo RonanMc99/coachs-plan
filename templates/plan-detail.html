@@ -11,5 +11,9 @@
 
 <h1>Here is your plan:</h1>
     <p>{{ plan }}</p>
-
+    <ul>
+        {% for section in plan.section_set.all %}
+            <li><a href="{% url 'plans:section-details' plan.slug section.section_number %}">{{ section.title }}</a></li>
+        {% endfor %}
+    </ul>
 {% endblock content %}
