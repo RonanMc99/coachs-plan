@@ -42,3 +42,13 @@ class Activity(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Example(models.Model):
+    ''' Examples of completed activities '''
+    activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
+    solution_number = models.IntegerField()
+    image = models.ImageField()
+
+    def __str__(self):
+        return f"{activity}-{self.pk}"
