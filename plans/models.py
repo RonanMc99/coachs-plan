@@ -16,6 +16,7 @@ class Coach(models.Model):
 class Plan(models.Model):
     ''' Plans are available for purchase '''
     title = models.CharField(max_length=150)
+    description = models.TextField()
     date = models.DateTimeField()
     slug = models.SlugField()
     image = models.ImageField()
