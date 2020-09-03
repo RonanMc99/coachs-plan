@@ -2,23 +2,39 @@
 
 {% block breadcrumb %}
 <li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:plans-list' %}">All Plans</a></li>
-<li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:plan-details' section.plan.slug %}">{{ section.plan.title }}</a></li>
-<li class="breadcrumb-item active" aria-current="page">{{ section.title }}</li>
+<li class="breadcrumb-item" aria-current="page"><a href="{{ section.plan.get_absolute_url }}">{{ section.plan.title }}</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{ section }}</li>
 {% endblock breadcrumb %}
 
 {% block title %}Section Detail{% endblock title %}
 
 {% block content %}
 
-<h1>Here is section:</h1>
-<p>{{ section.title }}</p>
-
-<ul>
-    {% for activity in section.activity_set.all %}
-    <li>
-        <a href="{% url 'plans:activity-details' section.plan.slug section.section_number activity.activity_number %}">{{ activity.title }}</a>
-    </li>
-    {% endfor %}
-</ul>
+<div class="main">
+    <div class="row">
+        <section class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ section.plan.title }}</div>
+                <div class="card-body">
+                    <p class="card-text">{{ section.plan.description }}</p>
+                </div>
+            </div>
+        </section>
+        <aside class="col-md-4">
+            <div class="card">
+                <div class="card-header">Activities</div>
+                <ul class="list-group list-group-flush">
+                    {% for activity in section.activity_set.all %}
+                    <li class="list-group-item">
+                        <a href="{{ activity.get_absolute_url }}">
+                            {{ activity.activity_number}}. {{ activity.title }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            
+        </aside>
+    </div>
+</div>
 
 {% endblock content %}
