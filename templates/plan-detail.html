@@ -18,6 +18,9 @@
                 <div class="card-body">
                     <p class="card-text">{{ plan.description }}</p>
                 </div>
+                <div class="card-footer">
+                    <a href="{% url 'cart:add_to_cart' plan.slug %}" class="btn btn-success">Add to Cart</a>
+                </div>
             </div>
         </section>
         <aside class="col-md-4">
