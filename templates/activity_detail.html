@@ -2,8 +2,10 @@
 
 {% block breadcrumb %}
 <li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:plans-list' %}">All Plans</a></li>
-<li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:plan-details' activity.section.plan.slug %}">{{ activity.section.plan.title }}</a></li>
-<li class="breadcrumb-item" aria-current="page"><a href="{% url 'plans:section-details' activity.section.plan.slug activity.section.section_number %}">{{ activity.section.title }}</a></li>
+<li class="breadcrumb-item" aria-current="page"><a
+        href="{{ activity.section.plan.get_absolute_url }}">{{ activity.section.plan.title }}</a></li>
+<li class="breadcrumb-item" aria-current="page"><a
+        href="{{ activity.section.get_absolute_url }}">{{ activity.section.title }}</a></li>
 <li class="breadcrumb-item active" aria-current="page">{{ activity.title }}</li>
 {% endblock breadcrumb %}
 
@@ -11,7 +13,47 @@
 
 {% block content %}
 
-<h1>Welcome to Activity:</h1>
-<p>{{ activity.title }}</p>
+<h1>Your 'to-do' list for this activity:</h1>
+
+<div class="row">
+    <main class="col-md-8">
+        <div class="card">
+            <div class="card-header">{{ activity.section.plan.title }}</div>
+            <div class="card-body">
+                <p class="card-text">{{ activity.section.plan.description }}</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-header">Click below to see an example</div>
+            {% for example in activity.example_set.all %}
+            <div class="accordion" id="toggle-{{ example.example_number }}">
+                <div class="card">
+                    <div class="card-header" id="heading-{{ example.example_number }}">
+                        <h2 class="mb-0">
+                            <button class="btn btn-link" type="button" data-toggle="collapse"
+                                data-target="#collapse-{{ example.example_number }}" aria-expanded="true"
+                                aria-controls="collapse-{{ example.example_number }}">
+                                example {{ example.example_number }}
+                            </button>
+                        </h2>
+                    </div>
+                    <div id="collapse-{{ example.example_number }}" class="collapse"
+                        aria-labelledby="heading-{{ example.example_number }}"
+                        data-parent="#toggle-{{ example.example_number }}">
+                        <div class="card-body">
+                            <img src="{{ example.image.url }}" class="card-img-top" alt="example">
+                        </div>
+                    </div>
+            {% endfor %}
+        </div>
+    </main>
+
+
+
+</div>
+
+
+
+
 
 {% endblock content %}
