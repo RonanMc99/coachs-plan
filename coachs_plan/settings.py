@@ -146,3 +146,6 @@ AUTHENTICATION_BACKENDS = (
 # Send emails to the console 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# Set redirects 
+LOGIN_REDIRECT_URL = 'plans:plans-list'
+LOGOUT_REDIRECT_URL = 'pages:home'
