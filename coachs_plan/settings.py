@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     # Local
     'plans',
     'pages',
+    'cart',
 ]
 
 MIDDLEWARE = [
