@@ -27,6 +27,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    # Packages
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # Local
     'plans',
     'pages',
 ]
@@ -116,3 +124,15 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_root')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media_root')
+
+# Django-Allauth settings
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+# Send emails to the console 
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
