@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',
 
     # Local
     'plans',
@@ -67,8 +68,11 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'coachs_plan.wsgi.application'
+# Crispy Forms Templates
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+
+WSGI_APPLICATION = 'coachs_plan.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
