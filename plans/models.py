@@ -1,4 +1,5 @@
 from django.db import models
+from django.shortcuts import reverse, redirect
 
 class Coach(models.Model):
     ''' Coachs create the Plans '''
@@ -27,6 +28,11 @@ class Plan(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("plans:plan-details", kwargs={
+            'slug': self.slug
+        })
+
 
 class Section(models.Model):
     ''' Plans are divided into sections '''
@@ -36,6 +42,12 @@ class Section(models.Model):
 
     def __str__(self):
         return self.title
+    
+    def get_absolute_url(self):
+        return reverse("plans:section-details", kwargs={
+            'plan_slug': self.plan.slug,
+            'section_number': self.section_number
+        })
 
 
 class Activity(models.Model):
@@ -47,6 +59,13 @@ class Activity(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse("plans:activity-details", kwargs={
+            'plan_slug': self.section.plan.slug,
+            'section_number': self.section.section_number,
+            'activity_number': self.activity_number
+        })
+
     class Meta:
         verbose_name_plural = 'Activities'
 
@@ -54,7 +73,7 @@ class Activity(models.Model):
 class Example(models.Model):
     ''' Examples of completed activities '''
     activity = models.ForeignKey(Activity, on_delete=models.CASCADE)
-    solution_number = models.IntegerField()
+    example_number = models.IntegerField()
     image = models.ImageField()
 
     def __str__(self):
