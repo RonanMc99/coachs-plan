@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import CartItem, CompletedOrder, Order
 
-# Register your models here.
+admin.site.register(CartItem)
+admin.site.register(CompletedOrder)
+admin.site.register(Order)
