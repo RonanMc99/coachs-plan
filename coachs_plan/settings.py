@@ -150,3 +150,7 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # Set redirects 
 LOGIN_REDIRECT_URL = 'plans:plans-list'
 LOGOUT_REDIRECT_URL = 'pages:home'
+
+# Stripe
+STRIPE_TEST_PUBLISHABLE_KEY=env('STRIPE_TEST_PUBLISHABLE_KEY')
+STRIPE_TEST_SECRET_KEY=env('STRIPE_TEST_SECRET_KEY')
