@@ -28,13 +28,30 @@
 </tr>
 
 {% endfor %}
-
+{% if order.get_order_total %}
 <tr>
     <td colspan="2">
         <strong>Cart total: </strong>
     </td>
     <td colspan="1">
         <strong>£{{ order.get_order_total }}</strong>
+    </td>
+</tr>
+{% endif %}
+<tr>
+    <td colspan="3">
+        <a href="{% url 'plans:plans-list' %}" class="btn btn-primary">
+            {% if order %}
+            Continue shopping
+            {% else %}
+            Add to cart
+            {% endif %}
+        </a>
+        {% if order.get_order_total %}
+            <a href="{% url 'plans:plans-list' %}" class="btn btn-success">
+                Check Out
+            </a>
+        {% endif %}
     </td>
 </tr>
 
