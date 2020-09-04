@@ -48,7 +48,7 @@
             {% endif %}
         </a>
         {% if order.get_order_total %}
-            <a href="{% url 'plans:plans-list' %}" class="btn btn-success">
+            <a href="{% url 'cart:checkout' %}" class="btn btn-success">
                 Check Out
             </a>
         {% endif %}
