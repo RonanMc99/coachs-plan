@@ -9,18 +9,24 @@
 {% block content %}
 
 <h1>All Available Plans</h1>
-    {% for plan in queryset %}
-
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <img src="{{ plan.image.url }}" class="card-img-top" alt="Plan thumbnail">
-            <h5 class="card-title">{{ plan.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">£{{ plan.price }}</h6>
-            <p class="card-text">{{ plan.description }}</p>
-            <a href="{{ plan.get_absolute_url }}" class="card-link">{{ plan }}</a>
+    
+<div class="container">
+    <div class="row">
+        {% for plan in queryset %}
+        <div class="col py-3">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <img src="{{ plan.image.url }}" class="card-img-top" alt="Plan thumbnail">
+                    <h5 class="card-title">{{ plan.title }}</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">£{{ plan.price }}</h6>
+                    <p class="card-text">{{ plan.description }}</p>
+                    <a href="{{ plan.get_absolute_url }}" class="card-link">{{ plan }}</a>
+                </div>
+            </div>
         </div>
+        {% endfor %}
     </div>
-
-    {% endfor %}
+</div>
+    
 
 {% endblock content %}

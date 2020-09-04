@@ -107,7 +107,16 @@ padding: 2.5em 0;
 }
 
 /* Footer */
-.footer {
-  padding: 4em 0;
-  background: var(--clr-ltaccent);
+footer {
+  width: 100%;
+  position: fixed;
+  background-color: var(--clr-ltaccent);
+  margin: auto;
+  bottom: 0;
+}
+
+footer p {
+  font-size: 0.8em;
+  text-align: center;
+  margin: .5em;
 }
