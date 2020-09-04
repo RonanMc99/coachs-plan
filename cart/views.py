@@ -1,6 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 from plans.models import Plan
 from .models import CartItem, CompletedOrder, Order
 
@@ -13,3 +13,11 @@ def add_to_cart(request, plan_slug):
     order.save()
     messages.info(request, "Added to Cart!")
     return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+
+
+def cart_view(request):
+    order = get_object_or_404(Order, user=request.user)
+    context = {
+        'order': order
+    }
+    return render(request, "cart-summary.html", context)
