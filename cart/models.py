@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.db.models import Sum
 from django.db import models
 from plans.models import Plan
 
@@ -14,6 +15,9 @@ class Order(models.Model):
 
     def __str__(self):
         return self.user.email
+    
+    def get_order_total(self):
+        return self.items.all().aggregate(order_total=Sum('plan__price'))['order_total']
 
 
 class CartItem(models.Model):

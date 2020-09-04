@@ -27,8 +27,17 @@
     </td>
 </tr>
 
-
 {% endfor %}
+
+<tr>
+    <td colspan="2">
+        <strong>Cart total: </strong>
+    </td>
+    <td colspan="1">
+        <strong>£{{ order.get_order_total }}</strong>
+    </td>
+</tr>
+
 </table>
 
 {% endblock content %}
