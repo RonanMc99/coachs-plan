@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, Http404
@@ -8,6 +9,7 @@ from .models import CartItem, CompletedOrder, Order
 import stripe
 stripe.api_key = settings.STRIPE_TEST_SECRET_KEY
 
+@login_required
 def add_to_cart(request, plan_slug):
     plan = get_object_or_404(Plan, slug=plan_slug)
     cart_item, created = CartItem.objects.get_or_create(plan=plan)
@@ -18,6 +20,7 @@ def add_to_cart(request, plan_slug):
     messages.info(request, "Added to Cart!")
     return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
 
+@login_required
 def remove_from_cart(request, plan_slug):
     plan = get_object_or_404(Plan, slug=plan_slug)
     cart_item = get_object_or_404(CartItem, plan=plan)
@@ -27,7 +30,7 @@ def remove_from_cart(request, plan_slug):
     messages.info(request, "Removed from Cart!")
     return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
 
-
+@login_required
 def cart_view(request):
     order = get_object_or_404(Order, user=request.user)
     context = {
@@ -35,7 +38,7 @@ def cart_view(request):
     }
     return render(request, "cart-summary.html", context)
 
-
+@login_required
 def checkout(request):
     order = get_object_or_404(Order, user=request.user)
     if request.method == "POST":

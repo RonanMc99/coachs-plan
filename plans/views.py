@@ -1,3 +1,4 @@
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
@@ -11,6 +12,7 @@ def list_plans(request):
     }
     return render(request, "plan-list.html", context)
 
+@login_required
 def plan_details(request, slug):
     plan = get_object_or_404(Plan, slug=slug)
     order_qs = Order.objects.filter(user=request.user)
@@ -28,6 +30,7 @@ def plan_details(request, slug):
     }
     return render(request, "plan-detail.html", context)
 
+@login_required
 def section_details(request, plan_slug, section_number):
     section_qs = Section.objects \
         .filter(plan__slug=plan_slug) \
@@ -39,7 +42,7 @@ def section_details(request, plan_slug, section_number):
         return render(request, "section_detail.html", context)
     return Http404
 
-
+@login_required
 def activity_details(request, plan_slug, section_number, activity_number):
     activity_qs = Activity.objects \
         .filter(section__plan__slug=plan_slug) \
