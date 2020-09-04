@@ -106,11 +106,19 @@ padding: 2.5em 0;
   position: relative;
 }
 
+/* Content */
+.content-section {
+  text-align: center;
+  margin: auto;
+  padding-bottom: 3em;
+}
+
+
 /* Footer */
 footer {
   width: 100%;
-  position: fixed;
   background-color: var(--clr-ltaccent);
+  padding-top: 3em;
   margin: auto;
   bottom: 0;
 }
