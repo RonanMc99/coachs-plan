@@ -2,6 +2,7 @@ from django.http import Http404
 from django.shortcuts import render, get_object_or_404
 
 from .models import Plan, Section, Activity
+from cart.models import Order, CartItem
 
 def list_plans(request):
     queryset = Plan.objects.all()
@@ -12,8 +13,18 @@ def list_plans(request):
 
 def plan_details(request, slug):
     plan = get_object_or_404(Plan, slug=slug)
+    order_qs = Order.objects.filter(user=request.user)
+    plan_in_cart = False
+    if order_qs.exists():
+        order = order_qs[0]
+        order_item_qs = CartItem.objects.filter(plan=plan)
+        if order_item_qs.exists():
+            order_item = order_item_qs[0]
+            if order_item in order.items.all():
+                plan_in_cart = True
     context = {
-        'plan': plan
+        'plan': plan,
+        'in_cart_item': plan_in_cart
     }
     return render(request, "plan-detail.html", context)
 

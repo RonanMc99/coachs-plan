@@ -18,6 +18,15 @@ def add_to_cart(request, plan_slug):
     messages.info(request, "Added to Cart!")
     return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
 
+def remove_from_cart(request, plan_slug):
+    plan = get_object_or_404(Plan, slug=plan_slug)
+    cart_item = get_object_or_404(CartItem, plan=plan)
+    order = get_object_or_404(Order, user=request.user)
+    order.items.remove(cart_item)
+    order.save()
+    messages.info(request, "Removed from Cart!")
+    return HttpResponseRedirect(request.META.get("HTTP_REFERER"))
+
 
 def cart_view(request):
     order = get_object_or_404(Order, user=request.user)
