@@ -18,7 +18,7 @@
                 <div class="card-body">
                     <p class="card-text">{{ plan.description }}</p>
                 </div>
-                {% if plan_ownership != 'owned' %}
+                <!-- {% if plan_ownership != 'owned' %} -->
                     <div class="card-footer">
                     {% if plan_ownership == 'in_cart' %}
                         <a href="{% url 'cart:remove_from_cart' plan.slug %}" class="btn btn-danger">Remove from Cart</a>
@@ -26,7 +26,7 @@
                         <a href="{% url 'cart:add_to_cart' plan.slug %}" class="btn btn-success">Add to Cart</a>
                     {% endif %}
                     </div>
-                {% endif %}
+                <!-- {% endif %} -->
 
             </div>
         </section>

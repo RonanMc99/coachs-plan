@@ -10,7 +10,8 @@ NOT_IN_CART = 'not_in_cart'
 IS_OWNED = 'owned'
 
 def check_ownership(request, plan):
-    if plan in request.user.usersplans.plans.all():
+
+    if plan in request.user.usersplans.plans_list():
         return IS_OWNED
     order_qs = Order.objects.filter(user=request.user)
     if order_qs.exists():

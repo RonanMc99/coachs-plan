@@ -8,7 +8,7 @@ class UsersPlans(models.Model):
     """ A list of plans that the user has access to """
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    plans = models.ManyToManyField("Plan", blank=True)
+    plans = models.ManyToManyField('Plan', blank=True)
 
     def __str__(self):
         return self.user.username
