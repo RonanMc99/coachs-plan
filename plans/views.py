@@ -5,6 +5,22 @@ from django.shortcuts import render, get_object_or_404
 from .models import Plan, Section, Activity
 from cart.models import Order, CartItem
 
+IN_CART = 'in_cart'
+NOT_IN_CART = 'not_in_cart'
+IS_OWNED = 'owned'
+
+def check_ownership(request, plan):
+    if plan in request.user.usersplans.plans.all():
+        return IS_OWNED
+    order_qs = Order.objects.filter(user=request.user)
+    if order_qs.exists():
+        order = order_qs[0]
+        order_item_qs = CartItem.objects.filter(plan=plan)
+        if order_item_qs.exists():
+            order_item = order_item_qs[0]
+            if order_item in order.items.all():
+                return IN_CART
+    return NOT_IN_CART
 
 def list_plans(request):
     queryset = Plan.objects.all()
@@ -15,16 +31,11 @@ def list_plans(request):
 @login_required
 def plan_details(request, slug):
     plan = get_object_or_404(Plan, slug=slug)
-    order_qs = Order.objects.filter(user=request.user)
-    plan_in_cart = False
-    if order_qs.exists():
-        order = order_qs[0]
-        order_item_qs = CartItem.objects.filter(plan=plan)
-        if order_item_qs.exists():
-            order_item = order_item_qs[0]
-            if order_item in order.items.all():
-                plan_in_cart = True
-    context = {"plan": plan, "in_cart_item": plan_in_cart}
+    plan_ownership = check_ownership(request, plan)
+    context = {
+        "plan": plan, 
+        "plan_ownership": plan_ownership
+        }
     return render(request, "plan-detail.html", context)
 
 
@@ -33,9 +44,12 @@ def section_details(request, plan_slug, section_number):
     section_qs = Section.objects.filter(plan__slug=plan_slug).filter(
         section_number=section_number
     )
+    section = section_qs[0]
+    plan_ownership = check_ownership(request, section.plan)
     if section_qs.exists():
         context = {
-            "section": section_qs[0],
+            "section": section,
+            "plan_ownership": plan_ownership
         }
         return render(request, "section_detail.html", context)
     return Http404
@@ -48,9 +62,12 @@ def activity_details(request, plan_slug, section_number, activity_number):
         .filter(section__section_number=section_number)
         .filter(activity_number=activity_number)
     )
+    activity = activity_qs[0]
+    plan_ownership = check_ownership(request, activity.section.plan)
     if activity_qs.exists():
         context = {
-            "activity": activity_qs[0],
+            "activity": activity,
+            "plan_ownership": plan_ownership
         }
         return render(request, "activity_detail.html", context)
     return Http404

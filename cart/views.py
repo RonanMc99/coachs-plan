@@ -69,7 +69,7 @@ def checkout(request):
         return redirect("/account/profile/")
     
     context = {
-        'order':order
+        'order': order
     }
 
 
