@@ -76,6 +76,7 @@ class Section(models.Model):
     """
 
     title = models.CharField(max_length=150)
+    description = description = models.TextField(blank=True, default="Section Description")
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
     section_number = models.IntegerField()
 
