@@ -30,7 +30,7 @@
                             {% for activity in section.activity_set.all %}
                             <li class="list-group-item">
                                 <a href="{{ activity.get_absolute_url }}">
-                                    {{ activity.activity_number}}. {{ activity.title }}</a>
+                                    {{ activity.activity_number}}. {{ activity.activity_title}}</a>
                             </li>
                             {% endfor %}
                         </ul>
