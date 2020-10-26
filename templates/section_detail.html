@@ -11,42 +11,43 @@
 
 {% block content %}
 
-{% if plan in request.user.usersplans.plans_list %}
+    {% if plan_ownership == 'owned' %}
 
-    <div class="main">
-        <div class="row">
-            <section class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ section.plan.title }}</div>
-                    <div class="card-body">
-                        <p class="card-text">{{ section.plan.description }}</p>
+        <div class="main">
+            <div class="row">
+                <section class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">{{ section.plan.title }}</div>
+                        <div class="card-body">
+                            <p class="card-text">{{ section.plan.description }}</p>
+                        </div>
                     </div>
-                </div>
-            </section>
-            <aside class="col-md-4">
-                <div class="card">
-                    <div class="card-header">Activities</div>
-                    <ul class="list-group list-group-flush">
-                        {% for activity in section.activity_set.all %}
-                        <li class="list-group-item">
-                            <a href="{{ activity.get_absolute_url }}">
-                                {{ activity.activity_number}}. {{ activity.title }}</a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                
-            </aside>
+                </section>
+                <aside class="col-md-4">
+                    <div class="card">
+                        <div class="card-header">Activities</div>
+                        <ul class="list-group list-group-flush">
+                            {% for activity in section.activity_set.all %}
+                            <li class="list-group-item">
+                                <a href="{{ activity.get_absolute_url }}">
+                                    {{ activity.activity_number}}. {{ activity.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                </aside>
+            </div>
         </div>
-    </div>
 
-{% else %}
+    {% else %}
 
-    <div class="text-center">
-        <h3>You do not have access to this plan.<a href="{{ section.plan.get_absolute_url }}">Purchase it now</a></h3>
-        <img src="{% static 'images/no-access.png' %}" />
-    </div>
+        <div class="text-center">
+            <!-- <h3>{{ request.user.usersplans.plans_list }}</h3> -->
+            <h3>You do not have access to this plan.<a href="{{ section.plan.get_absolute_url }}">Purchase it now</a></h3>
+            <img src="{% static 'images/no-access.png' %}" />
+        </div>
 
-{% endif %}
+    {% endif %}
 
 {% endblock content %}
