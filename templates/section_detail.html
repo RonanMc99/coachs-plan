@@ -43,7 +43,6 @@
     {% else %}
 
         <div class="text-center">
-            <!-- <h3>{{ request.user.usersplans.plans_list }}</h3> -->
             <h3>You do not have access to this plan.<a href="{{ section.plan.get_absolute_url }}">Purchase it now</a></h3>
             <img src="{% static 'images/no-access.png' %}" />
         </div>
