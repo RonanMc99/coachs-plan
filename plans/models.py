@@ -29,8 +29,7 @@ def post_user_signup_receiver(sender, instance, created, *args, **kwargs):
 post_save.connect(post_user_signup_receiver, sender=settings.AUTH_USER_MODEL)
 
 class Coach(models.Model):
-    """ Represents a 'coach' user. 
-    
+    """ Represents a 'coach' user.
         Coaches are users who create and administer the plans. 
     """
 
@@ -46,8 +45,7 @@ class Coach(models.Model):
 
 
 class Plan(models.Model):
-    """ Plans are available for purchase 
-    
+    """ Plans are available for purchase
         A plan is created by a coach, and represents a collection of end-user activities.
         Examples may include 7 days of exercise routines or a set of meal plans. 
     """
@@ -70,9 +68,8 @@ class Plan(models.Model):
 
 class Section(models.Model):
     """ Sections group together activites within a plan.
-    
         Sections may represent one day at the gym or one 24 hour period for nutrition planning. 
-        Breadcrumb trails use sections within the navigation. 
+        Breadcrumb trails use sections within the navigation.
     """
 
     title = models.CharField(max_length=150)
@@ -91,8 +88,7 @@ class Section(models.Model):
 
 
 class Activity(models.Model):
-    """ An activity represents the specific actions assigned to a user within a plan. 
-    
+    """ An activity represents the specific actions assigned to a user within a plan.
         Examples may include a set of workout instructions or a nutritional protocol
     """
 
@@ -121,8 +117,7 @@ class Activity(models.Model):
 
 
 class Example(models.Model):
-    """ Example documents related to the activity 
-    
+    """ Example documents related to the activity
     Such as: workout instructions, charts, downloadable menus, meal plans
     Any collateral linked to the activity can be linked as img or pdf
     """
@@ -132,7 +127,6 @@ class Example(models.Model):
     example_description = models.TextField(blank=True)
     example_number = models.IntegerField()
     example_image = models.ImageField(null=True, blank=True)
-
 
     def __str__(self):
         return f"{self.activity.activity_title}-{self.pk}"
