@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     "plans",
     "pages",
     "cart",
+    "blog",
 ]
 
 MIDDLEWARE = [
