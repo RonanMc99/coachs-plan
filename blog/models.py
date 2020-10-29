@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from plans import Coach
+from plans.models import Coach
 
 
 class Post(models.Model):
