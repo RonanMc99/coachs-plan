@@ -21,11 +21,10 @@
                     <div class="card-footer">
                     {% if plan_ownership == 'in_cart' %}
                         <a href="{% url 'cart:remove_from_cart' plan.slug %}" class="btn btn-danger">Remove from Cart</a>
-                    {% else %}
+                    {% elif plan_ownership == 'not_in_cart' %}
                         <a href="{% url 'cart:add_to_cart' plan.slug %}" class="btn btn-success">Add to Cart</a>
                     {% endif %}
                     </div>
-                <!-- {% endif %} -->
 
             </div>
         </section>
