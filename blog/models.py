@@ -17,3 +17,6 @@ class Post(models.Model):
     publish = models.DateTimeField(default=timezone.now)
     slug = models.SlugField(max_length=250, unique_for_date='publish')
     author = models.ForeignKey(Coach, null=True, blank=True, on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.title
