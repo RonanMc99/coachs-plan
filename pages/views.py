@@ -32,10 +32,12 @@ class ContactPageView(FormView):
 
 def profile_view(request):
     user = request.user
+    users_plans = request.user.usersplans.plans.all()
     profile_name = user.username
     orders = CompletedOrder.objects.filter(order__user=user)
     context = {
         "orders": orders,
-        "username": profile_name
+        "username": profile_name, 
+        "users_plans": users_plans,
         }
     return render(request, "user_profile.html", context)
