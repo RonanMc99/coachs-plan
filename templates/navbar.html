@@ -21,19 +21,11 @@
             <li class="nav-item"><a class="nav-link" href="{% url 'plans:plans-list' %}">Shop</a></li>
             <li class="nav-item"><a class="nav-link" href="{% url 'pages:contact' %}">Contact</a></li>
             {% if request.user.is_authenticated %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'pages:profile' %}">Profile</a>
-                <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
-            </li>
-                {% if request.user.is_staff %}
-                <li class="nav-item"><a class="nav-link" href="admin/">Admin</a></li>
-                {% endif %}
-            <li class="nav-item">
-                <a class="nav-link" href="{% url 'cart:cart_summary' %}">
-                {{ request.user|cart_item_counter }}
-                <i class="fas fa-shopping-cart"></i>
-                </a>
-            </li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'pages:profile' %}">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'account_logout' %}">Log Out</a></li>
+            {% if request.user.is_staff %}
+            <li class="nav-item"><a class="nav-link" href="admin/">Admin</a></li>
+            {% endif %}
             {% else %}
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
@@ -42,6 +34,12 @@
                 <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
             </li>
             {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'cart:cart_summary' %}">
+                    {{ request.user|cart_item_counter }}
+                    <i class="fas fa-shopping-cart"></i>
+                </a>
+            </li>
         </ul>
     </div>
 </nav>
