@@ -66,7 +66,7 @@ def checkout(request):
         for plan in plans:
             request.user.usersplans.plans.add(plan)
         
-        order.is_ordered = True
+        order.purchased = True
         order.save()
         messages.success(request, "Your order was placed successfully")
         return redirect("/account/profile/")
@@ -74,6 +74,5 @@ def checkout(request):
     context = {
         'order': order
     }
-
 
     return render(request, "checkout.html", context)
