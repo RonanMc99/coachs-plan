@@ -10,9 +10,9 @@
     <div class="container text-center my-auto">
         <h1 class="mb-1">Welcome to the coach's plan blog</h1>
         <h3 class="mb-5">
-            <em>Welcome. Everyone knows that if you're a busy athlete, you need to have a plan.</em>
+            <em>"Every busy athlete needs a plan!"</em>
         </h3>
-        <img src="{% static 'images/planner.jpg' %}" class="img-fluid mt-2" alt="Responsive image">
+        <img src="{% static 'images/blog-hero.jpg' %}" class="img-fluid mt-2" alt="Responsive image">
     </div>
 </header>
 <!-- Blog List -->
@@ -22,7 +22,13 @@
             <div class="col-lg-10 mx-auto">
                 <h2>Here's the latest from the blog!</h2>
                 {% for post in queryset %}
-                <span>{{ post.title }}</span>
+
+                <div>
+                    <p>published: {{ post.publish }}</p>
+                    <h2><a href="">{{ post.title }}</a></h2>
+                    <p>{{ post.text|linebreaksbr }}</p>
+                </div>
+
                 {% endfor %}
             </div>
         </div>
