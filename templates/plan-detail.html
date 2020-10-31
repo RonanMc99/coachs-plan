@@ -11,24 +11,24 @@
 
 <div class="main">
     <div class="row">
-        <section class="col-md-8">
-            <div class="card" style="width: 18rem;">
-                <img src="{{ plan.image.url }}" class="card-img-top" alt="Plan thumbnail">
+        <section class="col-sm-6 col-md-8">
+            <div class="card">
+                <img src="{{ plan.image.url }}" class="card-img-top w-50 mx-auto rounded" alt="Plan thumbnail">
                 <div class="card-header">{{ plan.title }}</div>
                 <div class="card-body">
                     <p class="card-text">{{ plan.description }}</p>
                 </div>
-                    <div class="card-footer">
+                    <div class="card-footer mx-auto">
                     {% if plan_ownership == 'in_cart' %}
                         <a href="{% url 'cart:remove_from_cart' plan.slug %}" class="btn btn-danger">Remove from Cart</a>
+                        <a href="{% url 'cart:checkout' %}" class="btn btn-success">Check Out</a>
                     {% elif plan_ownership == 'not_in_cart' %}
                         <a href="{% url 'cart:add_to_cart' plan.slug %}" class="btn btn-success">Add to Cart</a>
                     {% endif %}
                     </div>
-
             </div>
         </section>
-        <aside class="col-md-4">
+        <aside class="col-sm-6 col-md-4">
             <div class="card">
                 <div class="card-header">Sections</div>
                 <ul class="list-group list-group-flush">
