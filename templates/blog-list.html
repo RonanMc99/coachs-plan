@@ -25,7 +25,7 @@
 
                 <div>
                     <p>published: {{ post.publish }}</p>
-                    <h2><a href="">{{ post.title }}</a></h2>
+                    <h2><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h2>
                     <p>{{ post.text|linebreaksbr }}</p>
                 </div>
 
