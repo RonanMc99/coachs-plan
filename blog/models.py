@@ -1,5 +1,5 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 from django.utils import timezone
 
 from plans.models import Coach
@@ -14,8 +14,8 @@ class Post(models.Model):
     title = models.CharField(max_length=150)
     text = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
-    publish = models.DateTimeField(default=timezone.now)
-    slug = models.SlugField(max_length=250, unique_for_date='publish')
+    published = models.DateTimeField(default=timezone.now)
+    slug = models.SlugField(max_length=250, unique_for_date='published')
     author = models.ForeignKey(Coach, null=True, blank=True, on_delete=models.SET_NULL)
 
     def __str__(self):
