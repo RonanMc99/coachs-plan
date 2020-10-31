@@ -1,6 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block breadcrumb %}
+<li class="breadcrumb-item" aria-current="page"><a href="{% url 'blog:blog-list' %}">All Posts</a></li>
+<li class="breadcrumb-item active" aria-current="page">{{ post.title }}</li>
+{% endblock breadcrumb %}
+
 {% block title %}Post{% endblock title %}
 
 {% block content %}
