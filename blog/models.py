@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
 from django.db import models
+from django.shortcuts import reverse
 from django.utils import timezone
 
 from plans.models import Coach
@@ -22,3 +23,8 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse("blog:blog-detail", kwargs={
+            'slug': self.slug
+        })
