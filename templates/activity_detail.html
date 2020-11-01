@@ -16,43 +16,47 @@
 <h1>Your 'to-do' list for this activity:</h1>
 
 <div class="row">
-    <main class="col-md-8">
+    <main class="col-sm-6 col-md-8 col-lg-12">
         <div class="card">
             <div class="card-header">{{ activity.activity_title }}</div>
+            <img src="{{ activity.activity_image.url }}" class="card-img-top" alt="activity thumbnail image">
             <div class="card-body">
                 <p class="card-text">{{ activity.activity_description }}</p>
             </div>
             <div class="py-16 flex flex-wrap">
                 <div class="flex flex-wrap w-full">
                     <div class="md:w-3/4 md:mt-0">
-                        <iframe src="https://player.vimeo.com/video/{{ activity.activity_video }}" width="640"
+                        <iframe src="https://player.vimeo.com/video/{{ activity.activity_video }}" width="100%"
                             height="480"
                             frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
         <div class="card">
-            <div class="card-header">Click below to see an example</div>
-            {% for example in activity.example_set.all %}
-            <div class="accordion" id="toggle-{{ example.example_number }}">
-                <div class="card">
-                    <div class="card-header" id="heading-{{ example.example_number }}">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse"
-                                data-target="#collapse-{{ example.example_number }}" aria-expanded="true"
-                                aria-controls="collapse-{{ example.example_number }}">
-                                example {{ example.example_number }}
-                            </button>
-                        </h2>
-                    </div>
-                    <div id="collapse-{{ example.example_number }}" class="collapse"
-                        aria-labelledby="heading-{{ example.example_number }}"
-                        data-parent="#toggle-{{ example.example_number }}">
-                        <div class="card-body">
-                            <img src="{{ example.image.url }}" class="card-img-top" alt="example">
+            {% if activity.example_set %}
+                <div class="card-header">Your coach has left some resources below.  Click below to expand each one.
+                </div>
+                {% for example in activity.example_set.all %}
+                <div class="accordion" id="toggle-{{ example.example_number }}">
+                    <div class="card">
+                        <div class="card-header" id="heading-{{ example.example_number }}">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse"
+                                    data-target="#collapse-{{ example.example_number }}" aria-expanded="true"
+                                    aria-controls="collapse-{{ example.example_number }}">
+                                    Example #{{ example.example_number }}
+                                </button>
+                            </h2>
                         </div>
-                    </div>
-            {% endfor %}
+                        <div id="collapse-{{ example.example_number }}" class="collapse"
+                            aria-labelledby="heading-{{ example.example_number }}"
+                            data-parent="#toggle-{{ example.example_number }}">
+                            <div class="card-body">
+                                <img src="{{ example.example_image.url }}" class="card-img-top" alt="example">
+                            </div>
+                        </div>
+                {% endfor %}
+            {% endif %}
         </div>
     </main>
 
