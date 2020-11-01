@@ -6,21 +6,29 @@
 {% block content %}
 
 <!-- Header -->
-<header class="d-flex">
-    <div class="container text-center my-auto">
-        <h1 class="mb-1">Welcome to the coach's plan blog</h1>
-        <h3 class="mb-5">
-            <em>"Every busy athlete needs a plan!"</em>
-        </h3>
-        <img src="{% static 'images/notebook.jpeg' %}" class="img-fluid mt-2" alt="Responsive image">
+<header class="masthead" style="background-image: url('{% static "images/notebook.jpeg"%}')" ;>
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <div class="mast-heading">
+                    <h1 class="mb-1">Check out all the posts by:</h1>
+                    <h3 class="mb-5">
+                        <p class='text-uppercase'>{{ coach }}</p>
+                        <em class='small'>{{ coach.blurb }}</em>
+                    </h3>
+                    </h3>
+                </div>
+            </div>
+        </div>
     </div>
 </header>
+
 <!-- Blog List -->
 <section class="content-section bg-light" id="blog-list">
     <div class="container text-center">
         <div class="row">
             <div class="col-lg-10 mx-auto">
-                <h2>Here are all {{ coach }}'s posts</h2>
                 {% for post in queryset %}
 
                 <div>
