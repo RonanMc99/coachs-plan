@@ -20,13 +20,11 @@
                     <h5 class="card-title">{{ plan.title }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">£{{ plan.price }}</h6>
                     <p class="card-text">{{ plan.description }}</p>
-                    <a href="{{ plan.get_absolute_url }}" class="card-link">{{ plan }}</a>
+                    <a href="{{ plan.get_absolute_url }}" class="btn btn-success text-uppercase ">Enter</a>
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
-    
-
 {% endblock content %}

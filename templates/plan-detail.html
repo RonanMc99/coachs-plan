@@ -13,12 +13,13 @@
     <div class="row">
         <section class="col-sm-6 col-md-8">
             <div class="card">
-                <img src="{{ plan.image.url }}" class="card-img-top w-50 mx-auto rounded" alt="Plan thumbnail">
                 <div class="card-header">{{ plan.title }}</div>
+                <img src="{{ plan.image.url }}" class="card-img-top mx-auto rounded" alt="Plan thumbnail">
+                
                 <div class="card-body">
                     <p class="card-text">{{ plan.description }}</p>
                 </div>
-                    <div class="card-footer mx-auto">
+                    <div class="mx-auto">
                     {% if plan_ownership == 'in_cart' %}
                         <a href="{% url 'cart:remove_from_cart' plan.slug %}" class="btn btn-danger">Remove from Cart</a>
                         <a href="{% url 'cart:checkout' %}" class="btn btn-success">Check Out</a>
@@ -44,6 +45,5 @@
         </aside>
     </div>
 </div>
-
 
 {% endblock content %}
