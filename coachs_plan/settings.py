@@ -182,5 +182,5 @@ if DEBUG is False:
 
     # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-    # TODO Enable file cache and compression
+    # Enable file cache and compression
     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
