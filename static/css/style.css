@@ -24,6 +24,8 @@
   --fs-h2: 1.2em;
   --fs-h3: 1.1em;
   --fs-body: 1rem;
+  height: 100%;
+  margin: 0;
 }
 
 @media (min-width: 800px) {
@@ -147,6 +149,10 @@ padding: 2.5em 0;
 }
 
 /* Content */
+.content {
+  min-height: calc(100vh - 70px);
+}
+
 .content-section {
   text-align: center;
   margin: auto;
@@ -222,7 +228,8 @@ header.masthead .overlay {
 }
 
 /* Footer */
-footer {
+.footer {
+  height: 50px;
   width: 100%;
   background-color: var(--clr-ltaccent);
   padding-top: 3em;

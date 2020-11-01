@@ -53,13 +53,12 @@
                 {% endblock breadcrumb %}
             </ol>
         </nav>
+        <div class="content">
+            {% block content %}
 
-        {% block content %}
-
-        {% endblock content %}
-
+            {% endblock content %}
+        </div>
         {% include "footer.html" %}
-
     </div>
 
     <!-- Load JavaScript -->
