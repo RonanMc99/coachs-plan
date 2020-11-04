@@ -11,6 +11,8 @@ services:
     web:
         build: .
         command: bash -c "/code/docker_start_up.sh"
+        environment:
+        - ENVIRONMENT=dev
         volumes:
         - .:/code
         ports:

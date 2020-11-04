@@ -11,7 +11,7 @@ environ.Env.read_env()
 # Set environment variables
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
-LOCALENV = env("LOCALENV")
+ENVIRONMENT = os.environ.get('ENVIRONMENT', default='prod')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -78,13 +78,13 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 WSGI_APPLICATION = "coachs_plan.wsgi.application"
 
 # Databases
-if LOCALENV:
+if ENVIRONMENT != 'prod':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
-    }   
+    }
 
 else:
     DATABASES = {
@@ -179,7 +179,7 @@ EMAIL_HOST_PASSWORD = env("SENDGRID_API_KEY")
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-if DEBUG is False:
+if ENVIRONMENT == 'prod':
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     SECURE_BROWSER_XSS_FILTER = True
@@ -190,7 +190,5 @@ if DEBUG is False:
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-    
-
     # Enable file cache and compression
-    # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
