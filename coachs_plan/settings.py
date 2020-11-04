@@ -154,6 +154,8 @@ AUTHENTICATION_BACKENDS = (
 
 # Send emails to the console
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# Set the 'From' email address
+DEFAULT_FROM_EMAIL = 'admin@thecoachsplan.com'
 
 # Set redirects
 LOGIN_REDIRECT_URL = "plans:plans-list"
@@ -169,6 +171,14 @@ import dj_database_url
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES["default"].update(db_from_env)
 
+# SMTP backend
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = 'apikey'
+EMAIL_HOST_PASSWORD = env("SENDGRID_API_KEY")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 if DEBUG is False:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
@@ -180,7 +190,7 @@ if DEBUG is False:
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-    # EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    
 
     # Enable file cache and compression
     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
