@@ -6,5 +6,7 @@ build:
     web: Dockerfile
 release:
   image: web
+  command:
+    - ./docker_start_up_prod.sh
 run:
   web: gunicorn coachs_plan.wsgi
