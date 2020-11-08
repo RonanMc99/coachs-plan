@@ -171,6 +171,18 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "static_root")
 MEDIA_ROOT = os.path.join(BASE_DIR, "media_root")
 
+# Django-Storages
+AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+AWS_DEFAULT_ACL = None
+AWS_STORAGE_BUCKET_NAME = 'coachs-plan'
+AWS_S3_REGION_NAME = 'eu-west-2'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400',
+}
+AWS_LOCATION = 'static'
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+DEFAULT_FILE_STORAGE = 'coachs_plan.storage_backend.MediaStorage'
 
 if ENVIRONMENT == 'prod':
     SESSION_COOKIE_SECURE = True
@@ -183,17 +195,7 @@ if ENVIRONMENT == 'prod':
     SECURE_SSL_REDIRECT = True
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
-    # Django-Storages
-    AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
-    AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-    AWS_DEFAULT_ACL = None
-    AWS_STORAGE_BUCKET_NAME = 'coachs-plan'
-    AWS_S3_REGION_NAME = 'eu-west-2'
-    AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',
-    }
-    AWS_LOCATION = 'static'
-    STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
 
     # Enable file cache and compression when not using S3
     # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
