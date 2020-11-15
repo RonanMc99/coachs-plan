@@ -48,7 +48,7 @@ def section_details(request, plan_slug, section_number):
     plan_ownership = check_ownership(request, section.plan)
     if section_qs.exists():
         context = {"section": section, "plan_ownership": plan_ownership}
-        return render(request, "section_detail.html", context)
+        return render(request, "section-detail.html", context)
     return Http404
 
 
