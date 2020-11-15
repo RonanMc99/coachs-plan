@@ -37,7 +37,7 @@ def profile_view(request):
     orders = CompletedOrder.objects.filter(order__user=user)
     context = {
         "orders": orders,
-        "username": profile_name, 
+        "username": profile_name,
         "users_plans": users_plans,
         }
-    return render(request, "user_profile.html", context)
+    return render(request, "user-profile.html", context)

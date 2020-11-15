@@ -5,23 +5,25 @@ from plans.models import Plan
 
 import uuid
 
+
 class Order(models.Model):
-    ''' The user's order '''
-    user = models.ForeignKey(settings.AUTH_USER_MODEL,
-                            on_delete=models.CASCADE)
+    """ The user's order """
+
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     order_ref = models.UUIDField(default=uuid.uuid4, editable=False)
-    items = models.ManyToManyField('CartItem')
+    items = models.ManyToManyField("CartItem")
     purchased = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.email
-    
+
     def get_order_total(self):
-        return self.items.all().aggregate(order_total=Sum('plan__price'))['order_total']
+        return self.items.all().aggregate(order_total=Sum("plan__price"))["order_total"]
 
 
 class CartItem(models.Model):
-    ''' An item in the cart '''
+    """ An item in the cart """
+
     plan = models.ForeignKey(Plan, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -29,7 +31,8 @@ class CartItem(models.Model):
 
 
 class CompletedOrder(models.Model):
-    ''' A completed order '''
+    """ A completed order """
+
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     payment_date = models.DateTimeField(auto_now_add=True)
     payment_total = models.FloatField()

@@ -63,5 +63,5 @@ def activity_details(request, plan_slug, section_number, activity_number):
     plan_ownership = check_ownership(request, activity.section.plan)
     if activity_qs.exists():
         context = {"activity": activity, "plan_ownership": plan_ownership}
-        return render(request, "activity_detail.html", context)
+        return render(request, "activity-detail.html", context)
     return Http404
