@@ -37,20 +37,20 @@
                 <div class="card-header">Your coach has left some resources below.  Click to view.
                 </div>
                 {% for example in activity.example_set.all %}
-                <div class="accordion" id="toggle-{{ example.example_number }}">
+                <div class="accordion" id="toggle-{{ example.example_title }}">
                     <div class="card">
-                        <div class="card-header" id="heading-{{ example.example_number }}">
-                            <h2 class="mb-0">
+                        <div class="card-header" id="heading-{{ example.example_title }}">
+                            <h2 class="mb-2">
                                 <button class="btn btn-link" type="button" data-toggle="collapse"
-                                    data-target="#collapse-{{ example.example_number }}" aria-expanded="true"
-                                    aria-controls="collapse-{{ example.example_number }}">
-                                    Example #{{ example.example_number }}
+                                    data-target="#collapse-{{ example.example_title }}" aria-expanded="true"
+                                    aria-controls="collapse-{{ example.example_title }}">
+                                    Example #{{ example.example_title }}
                                 </button>
                             </h2>
                         </div>
-                        <div id="collapse-{{ example.example_number }}" class="collapse"
-                            aria-labelledby="heading-{{ example.example_number }}"
-                            data-parent="#toggle-{{ example.example_number }}">
+                        <div id="collapse-{{ example.example_title }}" class="collapse"
+                            aria-labelledby="heading-{{ example.example_title }}"
+                            data-parent="#toggle-{{ example.example_title }}">
                             <div class="card-body">
                                 <img src="{{ example.example_image.url }}" class="card-img-top" alt="example">
                             </div>
