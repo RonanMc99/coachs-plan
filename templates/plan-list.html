@@ -8,7 +8,7 @@
 
 {% block content %}
 
-<h1>All Available Plans</h1>
+<h1>Browse Plans</h1>
     
 <div class="container">
     <div class="row">
@@ -19,7 +19,7 @@
                     <img src="{{ plan.image.url }}" class="card-img-top" alt="Plan thumbnail">
                     <h5 class="card-title">{{ plan.title }}</h5>
                     <h6 class="card-subtitle mb-2 text-muted">£{{ plan.price }}</h6>
-                    <p class="card-text">{{ plan.description }}</p>
+                    <p class="card-text">{{ plan.description|linebreaksbr }}</p>
                     <a href="{{ plan.get_absolute_url }}" class="btn btn-success text-uppercase ">Enter</a>
                 </div>
             </div>
