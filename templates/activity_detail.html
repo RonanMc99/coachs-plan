@@ -21,7 +21,7 @@
             <div class="card-header">{{ activity.activity_title }}</div>
             <img src="{{ activity.activity_image.url }}" class="card-img-top" alt="activity thumbnail image">
             <div class="card-body">
-                <p class="card-text">{{ activity.activity_description }}</p>
+                <p class="card-text">{{ activity.activity_description|linebreaksbr }}</p>
             </div>
             <div class="py-16 flex flex-wrap">
                 <div class="flex flex-wrap w-full">

@@ -17,7 +17,7 @@
                 <img src="{{ plan.image.url }}" class="card-img-top mx-auto rounded" alt="Plan thumbnail">
                 
                 <div class="card-body">
-                    <p class="card-text">{{ plan.description }}</p>
+                    <p class="card-text">{{ plan.description|linebreaksbr }}</p>
                 </div>
                     <div class="mx-auto">
                     {% if plan_ownership == 'in_cart' %}
