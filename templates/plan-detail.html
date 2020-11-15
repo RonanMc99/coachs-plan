@@ -19,7 +19,7 @@
                 <div class="card-body">
                     <p class="card-text">{{ plan.description|linebreaksbr }}</p>
                 </div>
-                    <div class="mx-auto">
+                    <div class="mx-auto mb-2">
                     {% if plan_ownership == 'in_cart' %}
                         <a href="{% url 'cart:remove_from_cart' plan.slug %}" class="btn btn-danger">Remove from Cart</a>
                         <a href="{% url 'cart:checkout' %}" class="btn btn-success">Check Out</a>

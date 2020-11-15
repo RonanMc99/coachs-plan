@@ -13,7 +13,7 @@
 
 {% block content %}
 
-<h1>Your 'to-do' list for this activity:</h1>
+<h1>Let's Get Gowing!</h1>
 
 <div class="row">
     <main class="col-sm-6 col-md-8 col-lg-12">
@@ -34,7 +34,7 @@
             </div>
         <div class="card">
             {% if activity.example_set %}
-                <div class="card-header">Your coach has left some resources below.  Click below to expand each one.
+                <div class="card-header">Your coach has left some resources below.  Click to view.
                 </div>
                 {% for example in activity.example_set.all %}
                 <div class="accordion" id="toggle-{{ example.example_number }}">
