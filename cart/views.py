@@ -24,7 +24,7 @@ def add_to_cart(request, plan_slug):
 def remove_from_cart(request, plan_slug):
     plan = get_object_or_404(Plan, slug=plan_slug)
     cart_item = get_object_or_404(CartItem, plan=plan)
-    order = get_object_or_404(Order, user=request.user)
+    order = Order.objects.get(user=request.user, purchased=False)
     order.items.remove(cart_item)
     order.save()
     messages.info(request, "Removed from Cart!")
@@ -32,15 +32,22 @@ def remove_from_cart(request, plan_slug):
 
 @login_required
 def cart_view(request):
-    order = get_object_or_404(Order, user=request.user)
-    context = {
-        'order': order
-    }
-    return render(request, "cart-summary.html", context)
+    cart_queryset = Order.objects.filter(user=request.user, purchased=False)
+    if cart_queryset.exists():
+        context = {
+            'order': cart_queryset[0]
+        }
+        return render(request, "cart-summary.html", context)
+    return Http404
 
 @login_required
 def checkout(request):
-    order = get_object_or_404(Order, user=request.user)
+    order_queryset = Order.objects.filter(user=request.user, purchased=False)
+    if order_queryset.exists():
+        order = order_queryset[0]
+    else:
+        return Http404
+    
     if request.method == "POST":
 
         # Get the stripe token
