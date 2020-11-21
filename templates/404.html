@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% block title %}Page not found{% endblock %}
+
+{% block content %}
+<h1>Sorry - your page was not found</h1>
+
+<p>Click to go back to</p><a class="nav-link" href="{% url 'pages:home' %}">Home</a>
+{% endblock content %}
