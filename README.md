@@ -55,10 +55,11 @@ Deployment: Docker / Heroku
 
 1. Clone the repositary to your installation location
 2. Create a docker-compose.yml file, using the template (docker-compose.yml.template).  This may be customised as needed to suit your local environment.
-3. Within the databases section of settings file, comment the appropriate block to select postgres.  ![Databases Screenshot](https://user-images.githubusercontent.com/51950969/99876241-67951880-2bed-11eb-9266-304fef8b82d1.png "Databases Screenshot")
-4. With Docker desktop running, build the initial image using the command docker-compose up --build
-5. Wait for the build to complete and use the command "docker-compose logs" to view the logs
-6. Run the command ` docker-compose -f docker-compose.local.yml up ` to run the containers.  This will also execute the docker_start_up.sh file which makes migrations and sets up the project.  You may then access your project at 0.0.0.0:8000.
+3. Create a .env file under coachs_plan to manage local environment variables, using the template provided, and modify for your environment
+4. Within the databases section of settings file, comment the appropriate block to select postgres.  ![Databases Screenshot](https://user-images.githubusercontent.com/51950969/99876241-67951880-2bed-11eb-9266-304fef8b82d1.png "Databases Screenshot")
+5. With Docker desktop running, build the initial image using the command docker-compose up --build
+6. Wait for the build to complete and use the command "docker-compose logs" to view the logs
+7. Run the command ` docker-compose -f docker-compose.local.yml up ` to run the containers.  This will also execute the docker_start_up.sh file which makes migrations and sets up the project.  You may then access your project at 0.0.0.0:8000.
 
 ## UX
 As mentioned in the Introduction, the site was based on my own personal need as a fitness coach.  I wanted to investigate how to deliver some content using Django.
