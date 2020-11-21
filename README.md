@@ -57,28 +57,28 @@ Version control was managed with Github.  I attempted to commit every meaningful
 ## Code Quality
 I validated my HTMl and CSS in order to check that all markup was valid using the service at [W3C](https://validator.w3.org).
 
-[Django caching](https://docs.djangoproject.com/en/3.1/topics/cache/) is enabled to improve performance and configured per-site caching.  Settings are configured within settings.py.
+![Django caching](https://docs.djangoproject.com/en/3.1/topics/cache/) is enabled to improve performance and configured per-site caching.  Settings are configured within settings.py.
+
+I used Google Lighthouse to check the site for performance, accessibility, best practices and SEO on each of the main pages.  While there may be some image optimisation improvements available for this demo site, scores received are above 90% and therefore, this is suitable for deployment.
+
+![Google Lighthouse Score](https://user-images.githubusercontent.com/51950969/99885149-cf1d8900-2c2a-11eb-9290-26d573f613d5.png)
 
 ## Installation
 
 1. Clone the repositary to your installation location
 2. Create a docker-compose.yml file, using the template (docker-compose.yml.template).  This may be customised as needed to suit your local environment.
-3. Create a .env file under coachs_plan to manage local environment variables, using the template provided, and modify for your environment
+3. Create a .env file under coachs_plan to manage local environment variables, using the template provided, and modify for your environment e.g. include Sendgrid / AWS secrets
 4. Within the databases section of settings file, comment the appropriate block to select postgres.  ![Databases Screenshot](https://user-images.githubusercontent.com/51950969/99876241-67951880-2bed-11eb-9266-304fef8b82d1.png "Databases Screenshot")
 5. With Docker desktop running, build the initial image using the command docker-compose up --build
 6. Wait for the build to complete and use the command "docker-compose logs" to view the logs
 7. Run the command ` docker-compose -f docker-compose.local.yml up ` to run the containers.  This will also execute the docker_start_up.sh file which makes migrations and sets up the project.  You may then access your project at 0.0.0.0:8000.
 
 ## UX
-As mentioned in the Introduction, the site was based on my own personal need as a fitness coach.  I wanted to investigate how to deliver some content using Django.
+As mentioned in the introduction, the site was based on my own personal need as a fitness coach.  I wanted to investigate how to deliver some content using Django.
 
-This content needed to be structured, as by it's nature, a fitness-training or nutritional protocol will be progessive, and vary with time.  This is how pysiological adaptations occur and the plans needed to reflect that.
+This content needed to be structured, as by it's nature, a fitness-training or nutritional protocol will be progessive, and vary with time.  This is how pysiological adaptations occur and the plans needed to reflect that.  Plans however, also needed to be flexible and adaptable, to accomodate both fixed-length and individualised plans, "one-off's" or anything a coach could conceive.
 
-Plans however, also needed to be flexible and adaptable, to accomodate both fixed-length and individualised plans, "one-off's" or anything a coach could conceive.
-
-I elected to use a simple heirarchy of Plans, which consist of 'Sections'.  Sections include activites, which may then have linked resources.  See the 'Plans' section below for a further description.
-
-Using this heirarchy, it is possible to create a range of plan types - from a 28 week marathon training plan, to a week-long workshop.  Downloadable programs, sample weekly schedules, nutirition tracking worksheets or a bespoke plan for an individual athlete.  It is also suitable for grouping together content for selling online, such as a disparate set of exercise plans or recipes.
+I elected to use a simple heirarchy of Plans, which consist of 'Sections'.  Sections include activites, which may then have linked resources.  See the 'Plans' section below for a further description.  Using this heirarchy, it is possible to create a range of plan types - from a 28 week marathon training plan, to a week-long workshop.  Downloadable programs, sample weekly schedules, nutirition tracking worksheets or a bespoke plan for an individual athlete.  It is also suitable for grouping together content for selling online, such as a disparate set of exercise plans or recipes.
 
 The type of content within each section would vary between plans, and may have to be modified to accomodate new plan structures, but this is made very simple through the use of extensible Django models and the extremely powerful built-in ORM.
 
@@ -92,7 +92,7 @@ As an administrative user I would like...
 - to allow users to purchase and gain access to these plans without my intervention
 - to upload text and image content which is beneficial to my customer
 - to add examples of completed plans and worksheets
-- Publish my blog posts to encourage and inform users, and also begin to build a relationship with prospective clients.  They can "see what I'm about" and perhaps choose to purchase one of my plans
+- Publish my blog posts to encourage and educate users, and also begin to build a relationship with prospective clients.  They can "see what I'm about" and perhaps choose to purchase one of my plans
 - Provide a way to register for a new account
 - Provide a way to contact me via the site
 
@@ -107,9 +107,7 @@ As an 'athlete' user I would like...
 
 ### Design
 
-The primary goal of this project was about testing the viability of delivering fitness content using Django, and so the visual design is basic, but functional for this purpose.
-
-Visually, this is a simple e-commerce design, using Bootstrap classes and some simple CSS to style the various elements. Django Crispy forms has been added to improve the look and usability of the forms.  
+The primary goal of this project was about testing the viability of delivering fitness content using Django, and so the visual design is basic, but functional for this purpose.  The project uses a simple e-commerce design, using Bootstrap classes and some simple CSS to style the various elements. Django Crispy forms has been added to improve both the look, and the usability of the forms.  
 
 The visual design has a simple 'no-frills' look and feel, as the main focus for this project was the e-commerce functionality.  The site is very simple, clean and responsive and is suitable for display on all devices.  Future development will include a front-end redesign.
 
@@ -151,11 +149,10 @@ The site has a breadcrumb trail which advances and retreats through Plans - Sect
 
 There is also a main navigation including shop, and cart links.  The site has been secured using Django-Allauth and use of permissions / the login required decorator as well as some logic within the templates.
 
-![Sign Up](https://user-images.githubusercontent.com/51950969/99879864-80122c80-2c07-11eb-9187-cf071db54411.png)
-
 ![Unauthorised](https://user-images.githubusercontent.com/51950969/99879877-90c2a280-2c07-11eb-8fe8-36a26e4cfaec.png)
 
 Stripe integration has been added using Stripe elements and some Javascript to integrate a secure payment form within the checkout page.
+![Checkout](https://user-images.githubusercontent.com/51950969/99885334-f759b780-2c2b-11eb-8a09-d4a781ffcb28.png)
 
 ## Payments
 This project uses Stripe to take payments for plans.  The user can add a plan to their cart, and when they select checkout, will be offered a payment form.
