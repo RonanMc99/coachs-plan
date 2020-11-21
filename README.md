@@ -51,6 +51,14 @@ Deployment: Docker / Heroku
 * Additional package requirements are provided in the pipenv and pipenv.lock files.  See below for installation instructions
 * The application uses the Stripe API to make payments.  If cloning this project, you must [request your own API key at Stripe.com](https://www.stripe.com).  For additional requirements see the installation and deployment sections.
 
+## Version Control
+Version control was managed with Github.  I attempted to commit every meaningful and related change in one discreet unit, adding a descriptive commit message.  I created a new local feature branch for each new feature I developed, with nine total branches accross the project.  Feature branches were merged back to the master branch using the ```git merge```, command before pushing to the remote with ```git push master```.
+
+## Code Quality
+I validated my HTMl and CSS in order to check that all markup was valid using the service at [W3C](https://validator.w3.org).
+
+[Django caching](https://docs.djangoproject.com/en/3.1/topics/cache/) is enabled to improve performance and configured per-site caching.  Settings are configured within settings.py.
+
 ## Installation
 
 1. Clone the repositary to your installation location
@@ -215,6 +223,24 @@ Heroku offer two container deployment options - using the container registry to 
 - STRIPE_TEST_PUBLISHABLE_KEY
 - STRIPE_TEST_SECRET_KEY
 
+### Heroku Deployment
+The project is deployed to Heroku with the Heroku command-line interface (CLI), which I installed locally using Homebrew:
+```
+brew install heroku/brew/heroku
+```
+
+Having installed the CLI, I logged in using the command below, and providing my credentials.
+```
+heroku login
+```
+Next, create a heroku remote git repositary and push to it using the commands:
+```
+heroku git:remote -a the-coachs-plan
+
+git push heroku master
+```
+These will push the code to Heroku and initialises the build process.  Progress can be tracked using output from the Heroku CLI.
+
 ### Media File Storage
 - Media files are handled using Amazon AWS, specifically, an S3 storage bucket.  Whitenoise was utilised during development, but [this is not suitable for Production](http://whitenoise.evans.io/en/stable/django.html#serving-media-files).
     - The django-storages library provides easy integration with AWS for storing user-media content
@@ -233,9 +259,12 @@ There are several improvements I would like to make in version 2, including:
 
 ## Testing
 
-I began the testing using some simple unittests using SimpleTestCase and TestCasel; however, due to the complexity of working with a third-party payment processor, testing for the main shopping logic was performed by manual QA and recorded in a spreadsheet.
+I began the testing using some simple unittests using SimpleTestCase and TestCase; however, due to the complexity of working with a third-party payment processor, testing for the main shopping logic was performed by manual QA and recorded in a spreadsheet.
 
-To execute tests:
+These manual tests include a test for each user story.
+
+### Automated tests
+A small number of automated tests were created to test for valid response codes and against simple page functionality within the Pages and Blog apps.  To execute these tests:
 
 '''
 docker-compose exec web python manage.py test
