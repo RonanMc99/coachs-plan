@@ -1,11 +1,14 @@
 # "The Coach's Plan" - an app for fitness and nutrition coaches
 
-![PCbuzz-screenshot1](https://user-images.githubusercontent.com/51950969/99876319-fbff7b00-2bed-11eb-8ba3-9e9f85dc9cc7.png)
+![Coachs Plan](https://user-images.githubusercontent.com/51950969/99876319-fbff7b00-2bed-11eb-8ba3-9e9f85dc9cc7.png)
 
-![PCbuzz-screenshot2](user-images.githubusercontent.com/51950969/99876441-a9728e80-2bee-11eb-9ad4-1f48c1df6f5c.png)
+![Home 2](https://user-images.githubusercontent.com/51950969/99876441-a9728e80-2bee-11eb-9ad4-1f48c1df6f5c.png)
 
 ## Live Demo
-I have created a demo site that includes some dummy plans[See the live demo here](https://the-coachs-plan.herokuapp.com/).  No actual purchases can be made using this site.
+I have created a demo site that includes some dummy plans.
+[See the live demo here](https://the-coachs-plan.herokuapp.com/).  
+
+***No actual purchases can be made using this site.***
 
 To access the demo, you can use the credentials below, or register for your own.
 
@@ -18,11 +21,13 @@ notaverygoodsecret
 
 This is a digital fitness and nutrition plan app for the web - it allows sports coaches, personal trainers and nutritionists to deliver a training or nutrition plan, accept orders, take payment, and provide access to the product.
 
-I have been a fitness coach for years and have a strong interest in nutrition, and wanted to explore creating a web app that would allow myself, or any other fitness or nutrition coach, to sell their products and servcies online.  There are some other services available, such as Teachable or Kajabi, but I had always found them to be inflexible for my needs, and also quite costly.
+I am a fitness and nutrition coach and this app was build with my own needs in mind.  I help athletes reach their sporting and body composition goals, and generally speaking, coaching individuals in this way means providing them with a plan they can follow which contains instructions, guidance and any other information they may need.
 
-For this app, the idea was around allowing a coach to upload a series of instructions and guides for the user.  A user can then browse for a fitness plan or diet plan that they like, and purchase it for instant access.
+There are various online coaching platforms available, such as Teachable, Fitr, or Kajabi, but I had always found them to be somewhat inflexible for my needs, and also quite costly.  So - I decided to build my own!
 
-The plans can consist of written and video material, as well as images and descriptions for thier plan.  The highly extensible nature of Django means that it's very easy to add additional content types as my needs develop - For any new type of content, I can simply make changes to the relevant model, make some additions to the view if needed, and update the template.  This is the power of Django for e-commerce.
+The simple aim for this app was to allow a coach to upload a series of instructions and guides for the user.  A user can then browse for a fitness plan or diet plan that they like, and purchase it for instant access.
+
+The plans may consist of written and video material, as well as images and descriptions for thier plan.  The highly extensible nature of Django means that it's very easy to add additional content types as my needs develop - For any new type of content, I can simply make changes to the relevant model, make some additions to the view if needed, and update the template.  This is the power of Django for e-commerce.
 
 There is also a very simple blog function which the coach can use to share information and reach new clients.
 
@@ -51,8 +56,9 @@ Deployment: Docker / Heroku
 1. Clone the repositary to your installation location
 2. Create a docker-compose.yml file, using the template (docker-compose.yml.template).  This may be customised as needed to suit your local environment.
 3. Within the databases section of settings file, comment the appropriate block to select postgres.  ![Databases Screenshot](https://user-images.githubusercontent.com/51950969/99876241-67951880-2bed-11eb-9266-304fef8b82d1.png "Databases Screenshot")
-4. Build the initial image using the command docker-compose up --build
+4. With Docker desktop running, build the initial image using the command docker-compose up --build
 5. Wait for the build to complete and use the command "docker-compose logs" to view the logs
+6. Run the command ` docker-compose -f docker-compose.local.yml up ` to run the containers.  This will also execute the docker_start_up.sh file which makes migrations and sets up the project.  You may then access your project at 0.0.0.0:8000.
 
 ## UX
 As mentioned in the Introduction, the site was based on my own personal need as a fitness coach.  I wanted to investigate how to deliver some content using Django.
@@ -77,7 +83,7 @@ As an administrative user I would like...
 - to allow users to purchase and gain access to these plans without my intervention
 - to upload text and image content which is beneficial to my customer
 - to add examples of completed plans and worksheets
-- Publish my blog posts to encourage and inform users, and also begin to build a relationship with prospective clients.  They can "see what I'm about"/
+- Publish my blog posts to encourage and inform users, and also begin to build a relationship with prospective clients.  They can "see what I'm about" and perhaps choose to purchase one of my plans
 - Provide a way to register for a new account
 - Provide a way to contact me via the site
 
@@ -94,16 +100,15 @@ As an 'athlete' user I would like...
 
 The primary goal of this project was about testing the viability of delivering fitness content using Django, and so the visual design is basic, but functional for this purpose.
 
-Visually, this is a simple e-commerce design, using Bootstrap classes and some simple CSS to style the various elements. Django Crispy forms has been added to improve the look and usability of the forms.  The visual design has a simple 'no-frills' look and feel, as the main focus for this project was the e-commerce functionality.
+Visually, this is a simple e-commerce design, using Bootstrap classes and some simple CSS to style the various elements. Django Crispy forms has been added to improve the look and usability of the forms.  
 
-The site is very simple, clean and responsive and is suitable for display on all devices.  Future development will include a front-end redesign.
+The visual design has a simple 'no-frills' look and feel, as the main focus for this project was the e-commerce functionality.  The site is very simple, clean and responsive and is suitable for display on all devices.  Future development will include a front-end redesign.
 
 ![Wireframe for Home and Shop](https://user-images.githubusercontent.com/51950969/99879769-cc10a180-2c06-11eb-9429-1314674ebb66.png)
 
-
 ### Database
 
-The database schema is shown [here](https://user-images.githubusercontent.com/51950969/99878569-425cd600-2bfe-11eb-8727-7a8138778147.png)
+The database schema is shown below ![schema](https://user-images.githubusercontent.com/51950969/99878569-425cd600-2bfe-11eb-8727-7a8138778147.png)
 
 The site is made up of multiple Django apps, named Blog, Pages, Plans and Cart.
 
@@ -116,6 +121,8 @@ The blog app contains a series of posts which are linked to the coach table.  Us
 The pages app contains any static pages required on the site, such as 'home', 'contact' and 'profile'.  These are a mix of function and Class-based views.
 
 ## Plans
+![Plan Image](https://user-images.githubusercontent.com/51950969/99880353-c61cbf80-2c0a-11eb-94f0-d7d05706e52b.png)
+
 The pages app oulines the main structure in terms of models.  
 - Coach represents the plan's author.  
 - Plan is the plan itself, and includes such fields as description and image, but the extensible nature of Django means that additional fields can easily be added e.g. for unlimited scalability of text sections, activities or downloadable documents
@@ -195,17 +202,17 @@ Heroku offer two container deployment options - using the container registry to 
 - A new Heroku app was created with the Heroku dashboard with the title 'the-coachs-plan'
 - Environment variables (known as Config Vars) MUST be set, and configured to include all of the project secrets.  The project requires the following variables to be set:
 
-AWS_STORAGE_BUCKET_NAME
-AWS_SECRET_ACCESS_KEY
-AWS_S3_REGION_NAME
-AWS_ACCESS_KEY_ID
-DATABASE_URL **Note** This is added automatically with the Heroku Postgres add-on
-DEBUG (set to 0 for False)
-ENVIRONMENT (set to prod)
-SECRET_KEY
-SENDGRID_API_KEY
-STRIPE_TEST_PUBLISHABLE_KEY
-STRIPE_TEST_SECRET_KEY
+- AWS_STORAGE_BUCKET_NAME
+- AWS_SECRET_ACCESS_KEY
+- AWS_S3_REGION_NAME
+- AWS_ACCESS_KEY_ID
+- DATABASE_URL **Note** This is added automatically with the Heroku Postgres add-on
+- DEBUG (set to 0 for False)
+- ENVIRONMENT (set to prod)
+- SECRET_KEY
+- SENDGRID_API_KEY
+- STRIPE_TEST_PUBLISHABLE_KEY
+- STRIPE_TEST_SECRET_KEY
 
 ### Media File Storage
 - Media files are handled using Amazon AWS, specifically, an S3 storage bucket.  Whitenoise was utilised during development, but [this is not suitable for Production](http://whitenoise.evans.io/en/stable/django.html#serving-media-files).
@@ -225,7 +232,7 @@ There are several improvements I would like to make in version 2, including:
 
 ## Testing
 
-I began the testing using some simple unittests using SimpleTestCase and TestCasel; however, due to the complexity of working with a third-party payment processor, most tests for the main shopping logic was performed by manual QA and recorded in a spreadsheet.
+I began the testing using some simple unittests using SimpleTestCase and TestCasel; however, due to the complexity of working with a third-party payment processor, testing for the main shopping logic was performed by manual QA and recorded in a spreadsheet.
 
 To execute tests:
 
@@ -250,7 +257,7 @@ In preparation for this project, I studied the following:
 Acknowledgements 
 I must acknowledge the developers who I learned so much from during this project.
 
-- The approach to using Stripe, security and best-practice configuration was learned from: "Vincent, William S.. Django for Professionals: Production websites with Python & Django. Still River Press. Kindle Edition." 
+- The approach to working with Stripe, and also security and best-practice configuration was learned from: "Vincent, William S.. Django for Professionals: Production websites with Python & Django. Still River Press. Kindle Edition."
 
 - The method of handling orders & cart items and getting the order total came from Matt Freire @ [JustDjango](https://www.youtube.com/channel/UCRM1gWNTDx0SHIqUJygD-kQ).
 
@@ -261,11 +268,12 @@ Massive thanks to the YouTube Superstars:
 - [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ)
 
 ## Known Issues
-- There is one bug that I am aware of within the demo, and that is due to SendGrid.  This is related to domain verification and the bug result is periodic failure of the 'admistrative-email send' feature during user signup.  The user signup process itself is not affected.
+- There is one bug that I am aware of within the demo, which is related to SendGrid and not the project code itself.  This is related to a domain verification issue, and at the time of writing, I am working to resolve this with my nameserver provider.  The bug causes periodic failure of the 'admistrative-email send' feature during user signup, and an 'SMTPDataError at /accounts/signup/' message is displayed.  The user signup process itself is not affected, and the user may log on  by navigating back to home and clicking 'Log In'.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 Please make sure to provide tests as appropriate.
 
 ## License
+This project is licensed under the standard MIT terms:
 [MIT](https://choosealicense.com/licenses/mit/)
