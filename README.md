@@ -125,14 +125,14 @@ The blog app contains a series of posts which are linked to the coach table.  Us
 ![Blog image](https://user-images.githubusercontent.com/51950969/99879819-332e5600-2c07-11eb-9dfe-98a142be7674.png)
 
 ## Pages
-The pages app contains any static pages required on the site, such as 'home', 'contact' and 'profile'.  These are a mix of function and Class-based views.
+The pages app contains any static pages required on the site, such as 'home', 'contact' and 'profile'.  These pages use a combination of function and class-based views to render content.
 
 ## Plans
 ![Plan Image](https://user-images.githubusercontent.com/51950969/99880353-c61cbf80-2c0a-11eb-94f0-d7d05706e52b.png)
 
 The pages app oulines the main structure in terms of models.  
 - Coach represents the plan's author.  
-- Plan is the plan itself, and includes such fields as description and image, but the extensible nature of Django means that additional fields can easily be added e.g. for unlimited scalability of text sections, activities or downloadable documents
+- Plan is the plan itself, and includes such fields as description and image, but the extensible nature of Django means that additional fields can easily be added e.g. for unlimited scalability, by adding additional text sections, videos, activities or downloadable pdf documents
 - Sections are the high-level plan breakdown and could represent, for example, a set of activites to complete in one week
 - Activites are the information and tasks that the coach can set e.g. complete a food diary or a sleep journal
 - Examples are provided to allow the coach to upload a pre-completed worksheet as an example to the user
@@ -152,14 +152,13 @@ There is also a main navigation including shop, and cart links.  The site has be
 ![Unauthorised](https://user-images.githubusercontent.com/51950969/99879877-90c2a280-2c07-11eb-8fe8-36a26e4cfaec.png)
 
 Stripe integration has been added using Stripe elements and some Javascript to integrate a secure payment form within the checkout page.
-![Checkout](https://user-images.githubusercontent.com/51950969/99885334-f759b780-2c2b-11eb-8a09-d4a781ffcb28.png)
 
 ## Payments
 This project uses Stripe to take payments for plans.  The user can add a plan to their cart, and when they select checkout, will be offered a payment form.
 
 ![Stripe](https://user-images.githubusercontent.com/51950969/99879899-af289e00-2c07-11eb-9a3c-6058e4cca106.png)
 
-This form uses some Javascript to accept a credit card number, date and CCV.  If you wish to accept payments from Stripe, you must sign up for an account at Stripe.com and complete the necessary requirements in order to get an API key.
+This form uses some Javascript to accept a credit card number, date and CCV, which was adapted from code on Stripe.com.  If you wish to accept payments from Stripe, you must sign up for an account at Stripe.com and complete the necessary requirements in order to get an API key.
 
 For the live demo, this payment form is linked to a sandboxed payment system, meaning, if you enter card details using the demo app, **you will not be charged**
 
@@ -269,20 +268,10 @@ docker-compose exec web python manage.py test
 '''
 
 ## Test Results
-The results of the manual testing are shown in [this document](https://docs.google.com/spreadsheets/d/1N19byJ9rkPg5WHwHa128r-hQgwOpUP3e19HZ-KL9xuk/edit?usp=sharing.
-
-### Google Lighthouse
-
-I used google lighthouse in to perform some tests against the demo site and look for performance issues.  This has indicated some performance issues which are mainly related to slow loading of CDN-based files.  This is one area where I will look for improvements when creating version 2 of this app.
+The planning and results of the testing are given in [this document](https://docs.google.com/spreadsheets/d/1N19byJ9rkPg5WHwHa128r-hQgwOpUP3e19HZ-KL9xuk/edit?usp=sharing.
 
 ## Credits
-
-In preparation for this project, I studied the following:
-
-"Django 3 By Example - Third Edition, Mele, S"
-
-Acknowledgements 
-I must acknowledge the developers who I learned so much from during this project.
+- In preparation for this project, I studied the following excellent book, which is highly recommended: - "Django 3 By Example - Third Edition, Mele, S"
 
 - The approach to working with Stripe, and also security and best-practice configuration was learned from: "Vincent, William S.. Django for Professionals: Production websites with Python & Django. Still River Press. Kindle Edition."
 
@@ -295,7 +284,7 @@ Massive thanks to the YouTube Superstars:
 - [Pretty Printed](https://www.youtube.com/channel/UC-QDfvrRIDB6F0bIO4I4HkQ)
 
 ## Known Issues
-- There is one bug that I am aware of within the demo, which is related to SendGrid and not the project code itself.  This is related to a domain verification issue, and at the time of writing, I am working to resolve this with my nameserver provider.  The bug causes periodic failure of the 'admistrative-email send' feature during user signup, and an 'SMTPDataError at /accounts/signup/' message is displayed.  The user signup process itself is not affected, and the user may log on  by navigating back to home and clicking 'Log In'.
+- There is one bug that I am aware of within the demo, which is related to SendGrid and not the project code itself.  This is caused by an email domain verification issue, and at the time of writing, I am working to resolve this issue with the provider.  The bug causes a failure of the 'admistrative-email send' feature during user signup, and an 'SMTPDataError at /accounts/signup/' message is displayed.  The user signup process itself is not affected, and the user may log on  by navigating back to home and clicking 'Log In'.
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
