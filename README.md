@@ -286,6 +286,8 @@ Massive thanks to the YouTube Superstars:
 ## Known Issues
 - There is one bug that I am aware of within the demo, which is related to SendGrid and not the project code itself.  This is caused by an email domain verification issue, and at the time of writing, I am working to resolve this issue with the provider.  The bug causes a failure of the 'admistrative-email send' feature during user signup, and an 'SMTPDataError at /accounts/signup/' message is displayed.  The user signup process itself is not affected, and the user may log on  by navigating back to home and clicking 'Log In'.
 
+- **update** I have found a bug in the demo site which prevents hidden content from being shown (e.g. examples).  This is due to a change in how I was handling on-page scripts.  I am unable to update the code to make the fix at this time but will do so asap.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 Please make sure to provide tests as appropriate.
